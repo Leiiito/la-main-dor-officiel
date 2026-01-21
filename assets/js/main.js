@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const filters = Array.from(document.querySelectorAll('.filter'));
-  const cards = Array.from(document.querySelectorAll('.card.service, .service.card, article.card'));
+  const panels = Array.from(document.querySelectorAll('.services-panel'));
   const searchInput = document.getElementById('prestationSearch');
 
   const normalize = (s) =>
@@ -9,50 +9,68 @@ document.addEventListener('DOMContentLoaded', () => {
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '');
 
-  let activeFilter = normalize(document.querySelector('.filter.is-active')?.dataset.filter) || 'ongles';
+  let activeTab =
+    normalize(document.querySelector('.filter.is-active')?.dataset.tab) || 'ongles';
 
-  function apply() {
-    const q = searchInput ? normalize(searchInput.value) : '';
-    cards.forEach((card) => {
-      const cats = normalize(card.dataset.category || '');
-      const text = normalize(card.innerText || '');
-      const okCat = cats.split(/\s+/).includes(activeFilter);
-      const okSearch = !q || text.includes(q);
-      card.style.display = okCat && okSearch ? '' : 'none';
+  function setActiveTab(tab) {
+    activeTab = normalize(tab);
+
+    filters.forEach((btn) => {
+      const isActive = normalize(btn.dataset.tab) === activeTab;
+      btn.classList.toggle('is-active', isActive);
+      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
     });
-    updateCounts();
+
+    panels.forEach((p) => {
+      p.classList.toggle('is-active', normalize(p.id) === activeTab);
+    });
+
+    applySearch();
   }
 
-  function updateCounts() {
+  function applySearch() {
+    const q = searchInput ? normalize(searchInput.value) : '';
+    const activePanel = document.getElementById(activeTab);
+    if (!activePanel) return;
+
+    const cards = Array.from(activePanel.querySelectorAll('.card.service'));
+
+    cards.forEach((card) => {
+      const text = normalize(card.innerText || '');
+      card.style.display = !q || text.includes(q) ? '' : 'none';
+    });
+
+    updateCounts(q);
+  }
+
+  function updateCounts(q) {
     filters.forEach((btn) => {
-      const f = normalize(btn.dataset.filter);
+      const panelId = normalize(btn.dataset.tab);
+      const panel = document.getElementById(panelId);
       const countEl = btn.querySelector('.count');
-      if (!countEl) return;
-      const q = searchInput ? normalize(searchInput.value) : '';
+      if (!panel || !countEl) return;
+
+      const cards = Array.from(panel.querySelectorAll('.card.service'));
       let n = 0;
+
       cards.forEach((card) => {
-        const cats = normalize(card.dataset.category || '');
         const text = normalize(card.innerText || '');
-        const okCat = cats.split(/\s+/).includes(f);
-        const okSearch = !q || text.includes(q);
-        if (okCat && okSearch) n += 1;
+        if (!q || text.includes(q)) n += 1;
       });
+
       countEl.textContent = n ? String(n) : '';
     });
   }
 
   filters.forEach((btn) => {
     btn.addEventListener('click', () => {
-      filters.forEach((b) => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      activeFilter = normalize(btn.dataset.filter);
-      apply();
+      setActiveTab(btn.dataset.tab);
     });
   });
 
   if (searchInput) {
-    searchInput.addEventListener('input', apply);
+    searchInput.addEventListener('input', applySearch);
   }
 
-  apply();
+  setActiveTab(activeTab);
 });
