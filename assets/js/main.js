@@ -66,78 +66,40 @@
   }
 
   /* ---------------------------------------------
-     
-  /* ---------------------------------------------
-     2) Prestations — Filtres simplifiés + recherche
-     - Boutons : .filter[data-group]
-     - Panels  : .services-panel#id (groupés)
+     2) Tabs Prestations
+     - Boutons : .filter[data-tab="id"]
+     - Panels  : .services-panel#id
   ---------------------------------------------- */
-  const groupButtons = $$(".filter[data-group]");
+  const tabButtons = $$(".filter[data-tab]");
   const panels = $$(".services-panel");
 
-  const GROUPS = {
-    ongles: ["ongles-mains", "ongles-gel", "ongles-pose-rallongement", "ongles-remplissage"],
-    pieds:  ["ongles-pieds"],
-    cils:   ["cils-pose", "cils-remplissage", "cils-rehaussement"],
-    packs:  ["packs"],
-    depose: ["ongles-depose", "cils-depose"]
-  };
-
-  const setPanelVisibility = (groupKey) => {
-    const allowed = new Set(GROUPS[groupKey] || []);
-    panels.forEach((p) => {
-      p.classList.toggle("is-active", allowed.has(p.id));
-    });
-  };
-
-  const activateGroup = (groupKey) => {
-    groupButtons.forEach((btn) => {
-      const active = btn.getAttribute("data-group") === groupKey;
+  const activateTab = (id) => {
+    tabButtons.forEach((btn) => {
+      const active = btn.getAttribute("data-tab") === id;
       btn.classList.toggle("is-active", active);
       btn.setAttribute("aria-selected", active ? "true" : "false");
     });
-    setPanelVisibility(groupKey);
+
+    panels.forEach((p) => {
+      const active = p.id === id;
+      p.classList.toggle("is-active", active);
+    });
   };
 
-  if (groupButtons.length && panels.length) {
-    groupButtons.forEach((btn) => {
+  if (tabButtons.length && panels.length) {
+    tabButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
-        const key = btn.getAttribute("data-group");
-        if (!key) return;
-        activateGroup(key);
+        const id = btn.getAttribute("data-tab");
+        if (!id) return;
+        activateTab(id);
+        // Sur mobile, recentre le tab actif dans le scroll horizontal
         btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-        // Réapplique la recherche en cours si besoin
-        const searchInput = $("#prestationSearch");
-        if (searchInput && searchInput.value) searchInput.dispatchEvent(new Event("input"));
-      });
-    });
-    // Groupe par défaut
-    activateGroup("ongles");
-  }
-
-  // Recherche (filtre les cartes visibles)
-  const searchInput = $("#prestationSearch");
-  if (searchInput) {
-    searchInput.addEventListener("input", () => {
-      const q = searchInput.value.trim().toLowerCase();
-      const activePanels = $$(".services-panel.is-active");
-      activePanels.forEach((panel) => {
-        const cards = $$(".card", panel);
-        let visibleCount = 0;
-        cards.forEach((card) => {
-          const text = card.textContent.toLowerCase();
-          const show = !q || text.includes(q);
-          card.style.display = show ? "" : "none";
-          if (show) visibleCount++;
-        });
-        // Si un panel n'a plus de cartes visibles, on le masque (évite un grand vide)
-        panel.style.display = visibleCount ? "" : "none";
       });
     });
   }
 
-
-3) Lightbox Galerie
+  /* ---------------------------------------------
+     3) Lightbox Galerie
      - Clique sur une image => ouvre
      - ESC / clic fond / bouton => ferme
   ---------------------------------------------- */
@@ -206,4 +168,32 @@
 
   track('[data-cta^="reserve"]', "Réserver");
   track("[data-service]", "Réserver (prestation)");
+})();
+
+/* ---------------------------------------------------------
+   Recherche prestations (filtre texte)
+--------------------------------------------------------- */
+(function(){
+  const input = document.getElementById("prestationSearch");
+  if (!input) return;
+
+  const normalize = (s) => (s || "").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
+  const match = () => {
+    const q = normalize(input.value.trim());
+    const cards = document.querySelectorAll("section.services-panel article.card.service");
+    cards.forEach((card) => {
+      const txt = normalize(card.innerText);
+      card.style.display = (!q || txt.includes(q)) ? "" : "none";
+    });
+  };
+
+  input.addEventListener("input", match);
+
+  // Quand on change d’onglet, on garde la recherche active (mais on recalcule au cas où)
+  document.querySelectorAll('.filter[data-tab]').forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // petit délai pour laisser l’onglet s’activer
+      setTimeout(match, 0);
+    });
+  });
 })();
