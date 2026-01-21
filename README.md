@@ -11,7 +11,7 @@
 
 ## À modifier (placeholders)
 Dans `index.html`, remplace :
-- `[URL_DU_SITE]` → l’URL finale GitHub Pages
+- `https://leiiito.github.io/la-main-dor-officiel/` → l’URL finale GitHub Pages
 - `[ADRESSE]`, `[CODE_POSTAL]`, `[HORAIRES]`, `[LIEN_MENTIONS_LEGALES]`
 
 ## Prestations / Calendly

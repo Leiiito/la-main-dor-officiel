@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: [URL_DU_SITE]/sitemap.xml
+Sitemap: https://leiiito.github.io/la-main-dor-officiel/sitemap.xml
