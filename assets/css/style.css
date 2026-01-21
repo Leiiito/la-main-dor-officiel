@@ -1021,3 +1021,25 @@ body{
 .filters::-webkit-scrollbar-thumb{
   background: rgba(var(--accent-rgb),0.18);
 }
+
+
+/* ============================
+   AJUSTEMENTS DEMANDÉS
+   - Retours avis en or
+   - Cartes prestations avec une teinte différente
+============================ */
+
+/* Etoiles avis : or (premium) */
+.stars{
+  color: #D4AF37;
+}
+
+/* Cartes prestations : fond légèrement différent (plus "nude") */
+.cards .card{
+  background: linear-gradient(180deg, #FFF8F4, #FFFFFF);
+  border-color: rgba(27,20,22,0.12);
+}
+.cards .card:hover{
+  background: linear-gradient(180deg, #FFF4EE, #FFFFFF);
+  border-color: rgba(var(--accent-rgb),0.20);
+}
