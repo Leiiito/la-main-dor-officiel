@@ -169,3 +169,15 @@
   track('[data-cta^="reserve"]', "Réserver");
   track("[data-service]", "Réserver (prestation)");
 })();
+
+// Recherche prestation
+const searchInput = document.getElementById('prestationSearch');
+if (searchInput) {
+  searchInput.addEventListener('input', function () {
+    const value = this.value.toLowerCase();
+    document.querySelectorAll('.card').forEach(card => {
+      const text = card.innerText.toLowerCase();
+      card.style.display = text.includes(value) ? '' : 'none';
+    });
+  });
+}

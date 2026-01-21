@@ -829,44 +829,44 @@ button{
 
 
 /* ============================
-   PALETTE A — Soft Nude Premium
-   (ajouté: palette premium)
+   PALETTE — Mauve Gravelines (alignée)
+   (remplace l’ancienne palette A)
 ============================ */
 
 :root{
   /* Fond & surfaces */
-  --bg: #FBF7F4;
-  --surface: #FFFFFF;
-  --surface-2: #F3ECE7;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f6f1fb;
 
   /* Traits / bordures */
-  --stroke: rgba(27, 20, 22, 0.12);
+  --stroke: rgba(17, 17, 24, 0.12);
 
   /* Textes */
-  --text: #1B1416;      /* titres / texte principal */
-  --muted: #3A2F33;     /* paragraphes */
-  --muted-2: rgba(27, 20, 22, 0.62);
+  --text: #111118;      /* titres / texte principal */
+  --muted: rgba(17,17,24,0.72);     /* paragraphes */
+  --muted-2: rgba(17,17,24,0.62);
 
-  /* Accents */
-  --accent: #7A4E4A;        /* CTA / principal */
-  --accent-2: #C7A18A;      /* secondaire (champagne) */
-  --accent-rgb: 122, 78, 74;
-  --accent-2-rgb: 199, 161, 138;
+  /* Accents (mauve "Gravelines") */
+  --accent: #6a1b9a;        /* CTA / principal */
+  --accent-2: #cdb4e8;      /* lilas doux */
+  --accent-rgb: 106, 27, 154;
+  --accent-2-rgb: 205, 180, 232;
 
   /* Focus */
-  --focus: #6A403D;
+  --focus: #56147d;
 }
 
-/* Fond global (glow premium, plus chaud) */
+/* Fond global : glow mauve subtil (premium) */
 body{
   background:
     radial-gradient(900px 520px at 20% 5%, rgba(var(--accent-rgb),0.10), transparent 55%),
-    radial-gradient(900px 520px at 85% 15%, rgba(var(--accent-2-rgb),0.10), transparent 55%),
+    radial-gradient(900px 520px at 85% 15%, rgba(var(--accent-2-rgb),0.12), transparent 55%),
     radial-gradient(900px 650px at 55% 80%, rgba(var(--accent-rgb),0.06), transparent 60%),
     var(--bg);
 }
 
-/* Sélection + focus */
+/* Sélection + focus (cohérent partout) */
 ::selection{ background: rgba(var(--accent-rgb),0.14); }
 :focus-visible{
   outline: 2px solid rgba(var(--accent-rgb),0.45);
@@ -877,7 +877,7 @@ body{
 /* CTA */
 .btn--primary{
   background: linear-gradient(135deg, rgba(var(--accent-rgb),0.14), rgba(var(--accent-2-rgb),0.10));
-  border-color: rgba(var(--accent-rgb),0.28);
+  border-color: rgba(var(--accent-rgb),0.25);
 }
 .btn--primary:hover{
   border-color: rgba(var(--accent-rgb),0.38);
@@ -888,9 +888,9 @@ body{
   border-color: rgba(var(--accent-rgb),0.22);
 }
 
-/* Section alt (fond “luxe discret”) */
+/* Section alt (fond mauve très léger) */
 .section--alt::before{
-  background: linear-gradient(180deg, rgba(var(--accent-rgb),0.04), rgba(var(--accent-2-rgb),0.02));
+  background: linear-gradient(180deg, rgba(var(--accent-rgb),0.04), rgba(var(--accent-2-rgb),0.03));
 }
 
 /* Badge hero */
@@ -907,12 +907,35 @@ body{
   text-decoration-color: rgba(var(--accent-rgb),0.40);
 }
 
-/* Petits accents (ex: étoiles avis) */
-.stars{ color: rgba(var(--accent-rgb),0.70); }
+/* Étoiles avis : jaune doré premium (conserve la demande) */
+.stars{ color: #D4AF37; }
+
+/* Cartes prestations : fond légèrement mauve pour différencier */
+.card{
+  background: linear-gradient(180deg, rgba(var(--accent-rgb),0.05), rgba(255,255,255,0.86));
+  border-color: rgba(var(--accent-rgb),0.12);
+}
+.card:hover{
+  border-color: rgba(var(--accent-rgb),0.22);
+  background: linear-gradient(180deg, rgba(var(--accent-rgb),0.07), rgba(255,255,255,0.92));
+}
+
+/* Filtres : cohérents avec le mauve */
+.filter:hover{
+  background: rgba(var(--accent-rgb),0.06);
+  border-color: rgba(var(--accent-rgb),0.24);
+}
+.filter.is-active{
+  background: linear-gradient(135deg, rgba(var(--accent-rgb),0.14), rgba(var(--accent-2-rgb),0.10));
+  border-color: rgba(var(--accent-rgb),0.28);
+}
+.count{
+  border-color: rgba(var(--accent-rgb),0.18);
+  background: rgba(var(--accent-rgb),0.07);
+}
 
 
-/* ============================
-   FIX HEADER (propre + premium)
+FIX HEADER (propre + premium)
 ============================ */
 
 /* Nav : on évite le "height fixe" qui casse quand le brand tient sur 2 lignes */
