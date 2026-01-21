@@ -1393,3 +1393,17 @@ a:hover{ color: rgba(var(--accent-rgb),0.92) !important; }
   .brand__name{ font-size: 18px; }
   .brand__meta{ font-size: 13px; }
 }
+
+
+
+/* ============================
+   Tweaks demandés
+   - "Gravelines" en terracotta
+   - Etoile du badge en jaune
+============================ */
+.accent{
+  color: rgba(var(--accent-rgb),0.95) !important;
+}
+.hero__badge span{
+  color: #D4AF37 !important;
+}
