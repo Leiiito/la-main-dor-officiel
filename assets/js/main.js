@@ -2,8 +2,9 @@
    La Main d'Or — One-page premium
    Fichier : /assets/js/main.js
    - Menu mobile accessible
-   - Tabs catégories prestations
-   - Lightbox galerie (simple)
+   - Tabs catégories prestations (30+ friendly)
+   - Lightbox galerie (simple, performant)
+   - Reveal au scroll (léger)
    ========================================================= */
 
 (function () {
@@ -35,27 +36,27 @@
       linksWrap.classList.contains("is-open") ? closeMenu() : openMenu();
     });
 
-    // Fermer au clic sur un lien (mobile)
+    // Ferme le menu au clic sur un lien (mobile)
     $$(".nav__link, .nav__cta", linksWrap).forEach((a) => {
       a.addEventListener("click", () => {
         if (window.matchMedia("(max-width: 859px)").matches) closeMenu();
       });
     });
 
-    // Fermer au clic dehors (mobile)
+    // Ferme au clic dehors (mobile)
     document.addEventListener("click", (e) => {
       if (!window.matchMedia("(max-width: 859px)").matches) return;
-      const target = e.target;
-      const clickedInside = linksWrap.contains(target) || toggleBtn.contains(target);
-      if (!clickedInside) closeMenu();
+      const t = e.target;
+      const inside = linksWrap.contains(t) || toggleBtn.contains(t);
+      if (!inside) closeMenu();
     });
 
-    // ESC
+    // ESC pour fermer
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && linksWrap.classList.contains("is-open")) closeMenu();
     });
 
-    // Resize vers desktop
+    // Cleanup lors du passage desktop
     window.addEventListener("resize", () => {
       if (window.matchMedia("(min-width: 860px)").matches) {
         linksWrap.classList.remove("is-open");
@@ -66,46 +67,49 @@
   }
 
   /* ---------------------------------------------
-     2) Tabs Prestations
-     - Boutons : .filter[data-tab="id"]
-     - Panels  : .services-panel#id
+     2) Tabs prestations
+     - Boutons : .tab[data-tab="..."]
+     - Cards : .service[data-cat="..."]
   ---------------------------------------------- */
-  const tabButtons = $$(".filter[data-tab]");
-  const panels = $$(".services-panel");
+  const tabs = $$(".tab");
+  const servicesWrap = $("[data-services]");
+  const services = servicesWrap ? $$(".service", servicesWrap) : [];
 
-  const activateTab = (id) => {
-    tabButtons.forEach((btn) => {
-      const active = btn.getAttribute("data-tab") === id;
-      btn.classList.toggle("is-active", active);
-      btn.setAttribute("aria-selected", active ? "true" : "false");
-    });
-
-    panels.forEach((p) => {
-      const active = p.id === id;
-      p.classList.toggle("is-active", active);
+  const setActiveTab = (btn) => {
+    tabs.forEach((b) => {
+      const active = b === btn;
+      b.classList.toggle("is-active", active);
+      b.setAttribute("aria-selected", active ? "true" : "false");
     });
   };
 
-  if (tabButtons.length && panels.length) {
-    tabButtons.forEach((btn) => {
+  const applyTab = (tabValue) => {
+    if (!services.length) return;
+    const showAll = tabValue === "Tout";
+
+    services.forEach((card) => {
+      const cat = card.getAttribute("data-cat");
+      const show = showAll || cat === tabValue;
+      card.classList.toggle("is-hidden", !show);
+    });
+  };
+
+  if (tabs.length && services.length) {
+    tabs.forEach((btn) => {
       btn.addEventListener("click", () => {
-        const id = btn.getAttribute("data-tab");
-        if (!id) return;
-        activateTab(id);
-        // Sur mobile, recentre le tab actif dans le scroll horizontal
-        btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        const value = btn.getAttribute("data-tab") || "Tout";
+        setActiveTab(btn);
+        applyTab(value);
       });
     });
   }
 
   /* ---------------------------------------------
-     3) Lightbox Galerie
-     - Clique sur une image => ouvre
-     - ESC / clic fond / bouton => ferme
+     3) Lightbox galerie
   ---------------------------------------------- */
   const gallery = $("[data-gallery]");
   const lightbox = $("[data-lightbox]");
-  const lightboxImg = $("[data-lightbox-img]");
+  const lightboxImg = lightbox ? $(".lightbox__img", lightbox) : null;
   const lightboxClose = $("[data-lightbox-close]");
 
   const openLightbox = (src, alt) => {
@@ -121,38 +125,58 @@
     if (!lightbox || !lightboxImg) return;
     lightbox.classList.remove("is-open");
     lightbox.setAttribute("aria-hidden", "true");
-    // Nettoyage pour éviter clignotement au prochain open
-    lightboxImg.removeAttribute("src");
-    lightboxImg.alt = "";
+    lightboxImg.src = "";
     document.body.style.overflow = "";
   };
 
-  if (gallery && lightbox && lightboxImg) {
+  if (gallery && lightbox) {
     $$(".gallery__item img", gallery).forEach((img) => {
       img.addEventListener("click", () => openLightbox(img.currentSrc || img.src, img.alt));
-      img.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") openLightbox(img.currentSrc || img.src, img.alt);
-      });
-      // rendre focusable pour accessibilité clavier
-      img.setAttribute("tabindex", "0");
+    });
+
+    lightbox.addEventListener("click", (e) => {
+      // Clique sur fond = ferme
+      if (e.target === lightbox) closeLightbox();
     });
 
     if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
 
-    // clic sur fond pour fermer
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-
-    // ESC
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && lightbox.classList.contains("is-open")) closeLightbox();
     });
   }
 
   /* ---------------------------------------------
-     4) Mini tracking (console)
-     Remplacez par GA4 si besoin
+     4) Reveal au scroll
+  ---------------------------------------------- */
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const revealTargets = [];
+
+  // Auto-tag éléments importants
+  $$("section.section, section.hero, .card, .gallery__item").forEach((el) => el.setAttribute("data-reveal", ""));
+  $$("[data-reveal]").forEach((el) => revealTargets.push(el));
+
+  if (!prefersReduced && revealTargets.length && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
+    );
+
+    revealTargets.forEach((el) => io.observe(el));
+  } else {
+    revealTargets.forEach((el) => el.classList.add("is-visible"));
+  }
+
+  /* ---------------------------------------------
+     5) Mini tracking console (optionnel)
+     (remplaçable par GA4 plus tard)
   ---------------------------------------------- */
   const track = (selector, label) => {
     $$(selector).forEach((el) => {
@@ -160,12 +184,12 @@
         // eslint-disable-next-line no-console
         console.log(`[CTA] ${label}`, {
           href: el.getAttribute("href"),
-          service: el.getAttribute("data-service") || null
+          service: el.getAttribute("data-service") || null,
         });
       });
     });
   };
 
-  track('[data-cta^="reserve"]', "Réserver");
+  track("[data-cta]", "Réserver (global)");
   track("[data-service]", "Réserver (prestation)");
 })();
