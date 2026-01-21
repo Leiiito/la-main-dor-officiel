@@ -158,52 +158,526 @@
 </div>
 </section>
 <!-- Prestations -->
-<section aria-label="Prestations" class="section" id="prestations">
-<div class="container">
+<section id="prestations" class="section" aria-label="Prestations">
+      <div class="container">
 <header class="section__head">
-<h2>Prestations &amp; réservation</h2>
-<p class="section__sub">
+          <h2>Prestations & réservation</h2>
+          <p class="section__sub">
             Ongles (mains/pieds) + cils à <strong>Gravelines</strong>.
           </p>
-</header>
-<div aria-label="Catégories de prestations" class="filters" role="tablist">
+        </header>
+<div class="filters" role="tablist" aria-label="Catégories de prestations">
+          <button aria-selected="true" class="filter is-active"
+                  id="tab-ongles"
+                  type="button"
+                  role="tab"
+                  data-tab="ongles"
+                  aria-controls="ongles">
+            Ongles
+            <span class="count" aria-hidden="true">4</span>
+          </button>
+          <button aria-selected="false" class="filter"
+                  id="tab-remplissage"
+                  type="button"
+                  role="tab"
+                  data-tab="remplissage"
+                  aria-controls="remplissage">
+            Remplissage
+            <span class="count" aria-hidden="true">11</span>
+          </button>
+          <button aria-selected="false" class="filter"
+                  id="tab-cils"
+                  type="button"
+                  role="tab"
+                  data-tab="cils"
+                  aria-controls="cils">
+            Cils
+            <span class="count" aria-hidden="true">7</span>
+          </button>
+          <button aria-selected="false" class="filter"
+                  id="tab-pieds"
+                  type="button"
+                  role="tab"
+                  data-tab="pieds"
+                  aria-controls="pieds">
+            Pieds
+            <span class="count" aria-hidden="true">1</span>
+          </button>
+          <button aria-selected="false" class="filter"
+                  id="tab-pack"
+                  type="button"
+                  role="tab"
+                  data-tab="pack"
+                  aria-controls="pack">
+            Packs
+            <span class="count" aria-hidden="true">4</span>
+          </button>
+          <button aria-selected="false" class="filter"
+                  id="tab-depose"
+                  type="button"
+                  role="tab"
+                  data-tab="depose"
+                  aria-controls="depose">
+            Dépose
+            <span class="count" aria-hidden="true">5</span>
+          </button>
+        </div>
 
+        <div class="prestations-search">
+          <input type="text" id="prestationSearch" placeholder="Rechercher une prestation…" aria-label="Rechercher une prestation" />
+        </div>
 
+        <section class="services-panel is-active" id="ongles" role="tabpanel" aria-labelledby="tab-ongles">
+          <div class="cards cards--services">
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Semi-permanent mains</h3>
+              <span class="tag">25€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">45 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/semi-permanent-mains-25-45-min"
+               target="_blank" rel="noopener"
+               data-service="Semi-permanent mains">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Gainage / renfort</h3>
+              <span class="tag">40€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">75 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/gainage-renfort-40-75-min"
+               target="_blank" rel="noopener"
+               data-service="Gainage / renfort">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Pose américaine</h3>
+              <span class="tag">35€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">90 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/pose-americaine-35-90-min"
+               target="_blank" rel="noopener"
+               data-service="Pose américaine">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Rallongement chablon</h3>
+              <span class="tag">50€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">120 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/rallongement-chablon-50-120-min"
+               target="_blank" rel="noopener"
+               data-service="Rallongement chablon">Réserver</a>
+          </article>
+          </div>
+        </section>
 
+        <section class="services-panel" id="remplissage" role="tabpanel" aria-labelledby="tab-remplissage">
+          <div class="cards cards--services">
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Remplissage gel</h3>
+              <span class="tag">35€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">90 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/remplissage-gel-35-90-min"
+               target="_blank" rel="noopener"
+               data-service="Remplissage gel">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Remplissage Cils à cils 2 semaines</h3>
+              <span class="tag">30€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">60 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/remplissage-cils-a-cils-2-semaines-30-60-min"
+               target="_blank" rel="noopener"
+               data-service="Remplissage Cils à cils 2 semaines">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Remplissage Cils à cils 3 semaines</h3>
+              <span class="tag">35€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">75 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/remplissage-cils-a-cils-3-semaines-35-75-min"
+               target="_blank" rel="noopener"
+               data-service="Remplissage Cils à cils 3 semaines">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Remplissage Mixte Fourni 2 semaines</h3>
+              <span class="tag">45€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">60 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/remplissage-mixte-fourni-2-semaines-45-60min"
+               target="_blank" rel="noopener"
+               data-service="Remplissage Mixte Fourni 2 semaines">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Remplissage Mixte Fourni 3 semaines</h3>
+              <span class="tag">50€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">75 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/remplissage-mixte-fourni-3-semaines-50-75min"
+               target="_blank" rel="noopener"
+               data-service="Remplissage Mixte Fourni 3 semaines">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Remplissage Mixte Naturel 2 semaines</h3>
+              <span class="tag">40€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">60 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/remplissage-mixte-naturel-2-semaines-40-60-min"
+               target="_blank" rel="noopener"
+               data-service="Remplissage Mixte Naturel 2 semaines">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Remplissage Mixte Naturel 3 semaines</h3>
+              <span class="tag">45€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">75 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/remplissage-mixte-naturel-3-semaines-45-75-min"
+               target="_blank" rel="noopener"
+               data-service="Remplissage Mixte Naturel 3 semaines">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Remplissage Méga Russe 2 semaines</h3>
+              <span class="tag">55€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">60 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/remplissage-mega-russe-2-semaines-55-60min"
+               target="_blank" rel="noopener"
+               data-service="Remplissage Méga Russe 2 semaines">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Remplissage Méga Russe 3 semaines</h3>
+              <span class="tag">60€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">75 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/remplissage-mega-russe-3-semaines-60-75-min"
+               target="_blank" rel="noopener"
+               data-service="Remplissage Méga Russe 3 semaines">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Remplissage Volume Russe 2 semaines</h3>
+              <span class="tag">45€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">60 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/remplissage-volume-russe-2-semaines-45-60-min"
+               target="_blank" rel="noopener"
+               data-service="Remplissage Volume Russe 2 semaines">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Remplissage Volume Russe 3 semaines</h3>
+              <span class="tag">50€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">75 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/remplissage-volume-russe-3-semaines-50-75-min"
+               target="_blank" rel="noopener"
+               data-service="Remplissage Volume Russe 3 semaines">Réserver</a>
+          </article>
+          </div>
+        </section>
 
+        <section class="services-panel" id="cils" role="tabpanel" aria-labelledby="tab-cils">
+          <div class="cards cards--services">
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Extensions de cils Cils à cils</h3>
+              <span class="tag">40€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">90 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/extensions-de-cils-cils-a-cils-40-90-min"
+               target="_blank" rel="noopener"
+               data-service="Extensions de cils Cils à cils">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Extensions de cils Volume Mixte Fourni</h3>
+              <span class="tag">55€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">90 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/extensions-de-cils-volume-mixte-fourni-55-90-min"
+               target="_blank" rel="noopener"
+               data-service="Extensions de cils Volume Mixte Fourni">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Extensions de cils Volume Mixte Naturel</h3>
+              <span class="tag">50€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">90 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/extensions-de-cils-volume-mixte-naturel-50-90-min"
+               target="_blank" rel="noopener"
+               data-service="Extensions de cils Volume Mixte Naturel">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Extensions de cils Volume Méga Russe</h3>
+              <span class="tag">70€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">90 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/extensions-de-cils-volume-mega-russe-70-90-min"
+               target="_blank" rel="noopener"
+               data-service="Extensions de cils Volume Méga Russe">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Extensions de cils Volume Russe</h3>
+              <span class="tag">60€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">90 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/extensions-de-cils-volume-russe-60-90-min"
+               target="_blank" rel="noopener"
+               data-service="Extensions de cils Volume Russe">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Rehaussement de cils</h3>
+              <span class="tag">45€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">70 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/rehaussement-de-cils-45-70-min"
+               target="_blank" rel="noopener"
+               data-service="Rehaussement de cils">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Rehaussement de cils + teinture</h3>
+              <span class="tag">55€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">75 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/rehaussement-de-cils-teinture-55-75min"
+               target="_blank" rel="noopener"
+               data-service="Rehaussement de cils + teinture">Réserver</a>
+          </article>
+          </div>
+        </section>
 
+        <section class="services-panel" id="pieds" role="tabpanel" aria-labelledby="tab-pieds">
+          <div class="cards cards--services">
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Semi-permanent pieds</h3>
+              <span class="tag">25€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">45 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/semi-permanent-pieds-25-45-min"
+               target="_blank" rel="noopener"
+               data-service="Semi-permanent pieds">Réserver</a>
+          </article>
+          </div>
+        </section>
 
+        <section class="services-panel" id="pack" role="tabpanel" aria-labelledby="tab-pack">
+          <div class="cards cards--services">
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Pack dépose capsule + nouvelle pose capsule</h3>
+              <span class="tag">45€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">90 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/pack-depose-capsule-nouvelle-pose-capsule-45-90min"
+               target="_blank" rel="noopener"
+               data-service="Pack dépose capsule + nouvelle pose capsule">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Pack dépose semi-permanent + nouvelle pose semi-permanent</h3>
+              <span class="tag">35€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">60 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/pack-depose-semi-nouvelle-pose-semi-35-60min"
+               target="_blank" rel="noopener"
+               data-service="Pack dépose semi-permanent + nouvelle pose semi-permanent">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Pack pose américaine + semi-permanent pieds</h3>
+              <span class="tag">55€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">105 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/pack-pose-americaine-semi-pieds-55-105-min"
+               target="_blank" rel="noopener"
+               data-service="Pack pose américaine + semi-permanent pieds">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Pack semi-permanent mains + pieds</h3>
+              <span class="tag">45€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">105 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/pack-semi-mains-pieds-45-105-min"
+               target="_blank" rel="noopener"
+               data-service="Pack semi-permanent mains + pieds">Réserver</a>
+          </article>
+          </div>
+        </section>
 
+        <section class="services-panel" id="depose" role="tabpanel" aria-labelledby="tab-depose">
+          <div class="cards cards--services">
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Dépose gel</h3>
+              <span class="tag">20€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">45 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/depose-gel-20-45-min"
+               target="_blank" rel="noopener"
+               data-service="Dépose gel">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Dépose pose américaine</h3>
+              <span class="tag">15€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">30 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/depose-pose-americaine-15-30-min"
+               target="_blank" rel="noopener"
+               data-service="Dépose pose américaine">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Dépose semi-permanent</h3>
+              <span class="tag">15€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">20 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/depose-semi-permanent-15-20min"
+               target="_blank" rel="noopener"
+               data-service="Dépose semi-permanent">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Dépose Extensions de cils Pose extérieure</h3>
+              <span class="tag">15€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">15 min</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/depose-extensions-de-cils-pose-exterieure-15-15min"
+               target="_blank" rel="noopener"
+               data-service="Dépose Extensions de cils Pose extérieure">Réserver</a>
+          </article>
+<article class="card service" data-service-card>
+            <div class="card__top">
+              <h3 class="card__title">Dépose extensions de cils réalisée par mes soins</h3>
+              <span class="tag">10€</span>
+            </div>
+            <div class="card__meta">
+              <span class="duration" aria-label="Durée">—</span>
+            </div>
+            <a class="btn btn--small btn--primary"
+               href="https://calendly.com/behramanon/depose-extensions-de-cils-realisee-par-mes-soins-10"
+               target="_blank" rel="noopener"
+               data-service="Dépose extensions de cils réalisée par mes soins">Réserver</a>
+          </article>
+          </div>
+        </section>
 
-
-
-
-<button aria-controls="ongles" aria-selected="true" class="filter is-active" data-tab="ongles" id="tab-ongles" role="tab" type="button">Ongles
-            <span aria-hidden="true" class="count">5</span></button><button aria-controls="cils" aria-selected="false" class="filter" data-tab="cils" id="tab-cils" role="tab" type="button">Cils
-            <span aria-hidden="true" class="count">17</span></button><button aria-controls="pieds" aria-selected="false" class="filter" data-tab="pieds" id="tab-pieds" role="tab" type="button">Pieds
-            <span aria-hidden="true" class="count">1</span></button><button aria-controls="pack" aria-selected="false" class="filter" data-tab="pack" id="tab-pack" role="tab" type="button">Packs
-            <span aria-hidden="true" class="count">4</span></button><button aria-controls="depose" aria-selected="false" class="filter" data-tab="depose" id="tab-depose" role="tab" type="button">Dépose
-            <span aria-hidden="true" class="count">5</span></button></div><div class="prestations-search"><input aria-label="Rechercher une prestation" id="prestationSearch" placeholder="Rechercher une prestation…" type="text"/></div><section aria-labelledby="tab-ongles" class="services-panel is-active" id="ongles" role="tabpanel"><div class="cards cards--services"><></><></><></><></><></></div></section><section aria-labelledby="tab-cils" class="services-panel" id="cils" role="tabpanel"><div class="cards cards--services"><></><></><></><></><></><></><></><></><></><></><></><></><></><></><></><></><></></div></section><section aria-labelledby="tab-pieds" class="services-panel" id="pieds" role="tabpanel"><div class="cards cards--services"><></></div></section><section aria-labelledby="tab-pack" class="services-panel" id="pack" role="tabpanel"><div class="cards cards--services"><></><></><></><></></div></section><section aria-labelledby="tab-depose" class="services-panel" id="depose" role="tabpanel"><div class="cards cards--services"><></><></><></><></><></></div></section>
-<div class="services" data-tabs="">
-
-
-
-
-
-
-
-
-
-
-
-</div>
-<div class="section__foot">
-<p class="muted">
-            Besoin d’un conseil ? Contactez-moi sur WhatsApp : <a class="inline-link" href="https://wa.me/33764409239" rel="noopener" target="_blank">07 64 40 92 39</a>.
-          </p>
-</div>
-</div>
-</section>
+        <p class="fineprint" style="margin-top:18px">
+          Besoin d’un conseil ? Contactez-moi sur WhatsApp : <a class="inline-link" href="https://wa.me/33764409239" target="_blank" rel="noopener">07 64 40 92 39</a>.
+        </p>
+      </div>
+    </section>
 <!-- Galerie -->
 <section aria-label="Galerie photos" class="section section--alt" id="galerie">
 <div class="container">

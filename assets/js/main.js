@@ -196,4 +196,40 @@
       setTimeout(match, 0);
     });
   });
+
+  /* ---------------------------------------------
+     5) Recherche prestations (filtre texte)
+  ---------------------------------------------- */
+  const searchInput = $("#prestationSearch");
+  const getActivePanel = () => $(".services-panel.is-active") || $(".services-panel");
+
+  const normalize = (s) =>
+    (s || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+
+  const applySearch = () => {
+    const q = normalize(searchInput ? searchInput.value : "");
+    const activePanel = getActivePanel();
+    if (!activePanel) return;
+
+    $$(".card.service", activePanel).forEach((card) => {
+      const text = normalize(card.innerText);
+      card.style.display = !q || text.includes(q) ? "" : "none";
+    });
+  };
+
+  if (searchInput) {
+    searchInput.addEventListener("input", applySearch);
+  }
+
+  // Quand on change d'onglet, on réapplique la recherche sur le panel actif
+  tabButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // petite attente pour laisser l'onglet s'activer
+      window.requestAnimationFrame(applySearch);
+    });
+  });
+
 })();
