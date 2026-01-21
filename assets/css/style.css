@@ -1128,3 +1128,134 @@ body{
   border-color: rgba(255,255,255,0.22) !important;
   color: #ffffff !important;
 }
+
+
+
+/* ============================
+   PURPLE SYSTEM — Tous éléments cliquables
+   Objectif : cohérence mauve premium partout
+============================ */
+
+/* Variables (si déjà définies, on force une cohérence) */
+:root{
+  --accent: #6a1b9a;
+  --accent-2: #cdb4e8;
+  --accent-rgb: 106, 27, 154;
+  --accent-2-rgb: 205, 180, 232;
+  --focus: #56147d;
+}
+
+/* Focus global cohérent */
+:focus-visible{
+  outline: 2px solid rgba(var(--accent-rgb),0.55) !important;
+  outline-offset: 3px !important;
+}
+
+/* Liens (tous) : nuance mauve + underline subtil */
+a{
+  text-decoration-color: rgba(var(--accent-rgb),0.22);
+}
+a:hover{
+  color: rgba(var(--accent-rgb),0.92);
+  text-decoration-color: rgba(var(--accent-rgb),0.36);
+}
+
+/* Boutons : mauve partout */
+.btn{
+  border-color: rgba(var(--accent-rgb),0.22) !important;
+}
+.btn--primary{
+  background: rgba(var(--accent-rgb),0.88) !important;
+  color: #fff !important;
+  border-color: rgba(var(--accent-rgb),0.88) !important;
+  box-shadow: 0 14px 28px rgba(17,17,24,0.14) !important;
+}
+.btn--primary:hover{
+  background: rgba(var(--accent-rgb),0.95) !important;
+  border-color: rgba(var(--accent-rgb),0.95) !important;
+}
+.btn--ghost{
+  background: rgba(var(--accent-rgb),0.08) !important;
+  color: rgba(17,17,24,0.92) !important;
+}
+.btn--ghost:hover{
+  background: rgba(var(--accent-rgb),0.14) !important;
+  border-color: rgba(var(--accent-rgb),0.32) !important;
+}
+
+/* Pills (WhatsApp / Insta / Avis) */
+.pill{
+  border-color: rgba(var(--accent-rgb),0.18) !important;
+  background: rgba(var(--accent-rgb),0.06) !important;
+  color: rgba(17,17,24,0.82) !important;
+}
+.pill:hover{
+  background: rgba(var(--accent-rgb),0.12) !important;
+  border-color: rgba(var(--accent-rgb),0.28) !important;
+}
+
+/* Onglets / rubriques prestations */
+.filter{
+  border-color: rgba(var(--accent-rgb),0.24) !important;
+  background: rgba(var(--accent-rgb),0.08) !important;
+}
+.filter:hover{
+  background: rgba(var(--accent-rgb),0.14) !important;
+  border-color: rgba(var(--accent-rgb),0.34) !important;
+}
+.filter.is-active{
+  background: rgba(var(--accent-rgb),0.90) !important;
+  border-color: rgba(var(--accent-rgb),0.90) !important;
+  color: #fff !important;
+}
+.filter.is-active .count{
+  background: rgba(255,255,255,0.16) !important;
+  border-color: rgba(255,255,255,0.22) !important;
+  color: #fff !important;
+}
+
+/* Liens inline */
+.inline-link{
+  color: rgba(var(--accent-rgb),0.92) !important;
+  text-decoration-color: rgba(var(--accent-rgb),0.30) !important;
+}
+.inline-link:hover{
+  text-decoration-color: rgba(var(--accent-rgb),0.44) !important;
+}
+
+/* Navbar : items hover + toggle */
+.nav__toggle{
+  border-color: rgba(var(--accent-rgb),0.22) !important;
+  background: rgba(var(--accent-rgb),0.08) !important;
+}
+.nav__toggle:hover{
+  background: rgba(var(--accent-rgb),0.14) !important;
+  border-color: rgba(var(--accent-rgb),0.32) !important;
+}
+.nav__toggle-line{
+  background: rgba(var(--accent-rgb),0.90) !important;
+}
+.nav__link:hover{
+  background: rgba(var(--accent-rgb),0.10) !important;
+}
+
+/* Galerie : effet au hover (cliquable) */
+.gallery__item:hover{
+  border-color: rgba(var(--accent-rgb),0.28) !important;
+}
+
+/* Lightbox close (bouton) */
+.lightbox__close:hover{
+  border-color: rgba(var(--accent-rgb),0.28) !important;
+}
+
+/* FAQ summary (cliquable) */
+.faq__item summary:hover{
+  color: rgba(var(--accent-rgb),0.95) !important;
+}
+
+/* Champ recherche : focus mauve */
+.prestations-search input:focus{
+  border-color: rgba(var(--accent-rgb),0.45) !important;
+  box-shadow: 0 0 0 4px rgba(var(--accent-rgb),0.14) !important;
+}
