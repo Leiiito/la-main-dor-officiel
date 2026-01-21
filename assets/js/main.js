@@ -1,39 +1,58 @@
-
-// === PRESTATIONS FILTERS + SEARCH (ROBUST) ===
 document.addEventListener('DOMContentLoaded', () => {
-  const filters = document.querySelectorAll('.filter');
-  const cards = document.querySelectorAll('.card');
+  const filters = Array.from(document.querySelectorAll('.filter'));
+  const cards = Array.from(document.querySelectorAll('.card.service, .service.card, article.card'));
   const searchInput = document.getElementById('prestationSearch');
 
-  let activeFilter = 'ongles';
+  const normalize = (s) =>
+    (s || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
 
-  function normalize(str){
-    return str.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  let activeFilter = normalize(document.querySelector('.filter.is-active')?.dataset.filter) || 'ongles';
+
+  function apply() {
+    const q = searchInput ? normalize(searchInput.value) : '';
+    cards.forEach((card) => {
+      const cats = normalize(card.dataset.category || '');
+      const text = normalize(card.innerText || '');
+      const okCat = cats.split(/\s+/).includes(activeFilter);
+      const okSearch = !q || text.includes(q);
+      card.style.display = okCat && okSearch ? '' : 'none';
+    });
+    updateCounts();
   }
 
-  function applyFilters(){
-    const query = searchInput ? normalize(searchInput.value) : '';
-    cards.forEach(card => {
-      const cats = card.dataset.category || '';
-      const text = normalize(card.innerText);
-      const matchCategory = cats.includes(activeFilter);
-      const matchSearch = !query || text.includes(query);
-      card.style.display = (matchCategory && matchSearch) ? '' : 'none';
+  function updateCounts() {
+    filters.forEach((btn) => {
+      const f = normalize(btn.dataset.filter);
+      const countEl = btn.querySelector('.count');
+      if (!countEl) return;
+      const q = searchInput ? normalize(searchInput.value) : '';
+      let n = 0;
+      cards.forEach((card) => {
+        const cats = normalize(card.dataset.category || '');
+        const text = normalize(card.innerText || '');
+        const okCat = cats.split(/\s+/).includes(f);
+        const okSearch = !q || text.includes(q);
+        if (okCat && okSearch) n += 1;
+      });
+      countEl.textContent = n ? String(n) : '';
     });
   }
 
-  filters.forEach(btn => {
+  filters.forEach((btn) => {
     btn.addEventListener('click', () => {
-      filters.forEach(b => b.classList.remove('is-active'));
+      filters.forEach((b) => b.classList.remove('is-active'));
       btn.classList.add('is-active');
-      activeFilter = btn.dataset.filter;
-      applyFilters();
+      activeFilter = normalize(btn.dataset.filter);
+      apply();
     });
   });
 
-  if(searchInput){
-    searchInput.addEventListener('input', applyFilters);
+  if (searchInput) {
+    searchInput.addEventListener('input', apply);
   }
 
-  applyFilters();
+  apply();
 });
