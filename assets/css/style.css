@@ -908,3 +908,126 @@ body{
 /* Petits accents (ex: étoiles avis) */
 .stars{ color: rgba(var(--accent-rgb),0.70); }
 
+/* ============================
+   FIX HEADER (propre + premium)
+============================ */
+
+/* Nav : on évite le "height fixe" qui casse quand le brand tient sur 2 lignes */
+.nav{
+  height: auto;
+  min-height: 66px;
+  padding: 10px 0;
+  align-items: center;
+}
+
+/* Brand : alignement horizontal propre (icône + texte) */
+.brand{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Le marqueur suit la palette */
+.brand__mark{
+  background: linear-gradient(135deg, rgba(var(--accent-rgb),0.14), rgba(var(--accent-2-rgb),0.10));
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* Typo du brand plus stable */
+.brand__name{
+  line-height: 1.1;
+}
+
+/* Meta : sur petits écrans, on évite que ça casse l’en-tête */
+@media (max-width: 520px){
+  .brand__meta{ display: none; }
+}
+
+/* CTA navbar : garde ton style mais cohérent palette A */
+.nav__cta.btn--primary{
+  border-color: rgba(var(--accent-rgb),0.28);
+}
+.nav__cta.btn--primary:hover{
+  border-color: rgba(var(--accent-rgb),0.38);
+}
+
+
+/* ============================
+   PRESTATIONS (plus logique / simple / chic)
+============================ */
+
+/* Filtres : sur desktop on wrap (plus logique), sur mobile on garde le scroll */
+@media (min-width: 860px){
+  .filters{
+    flex-wrap: wrap;
+    overflow-x: visible;
+    padding-bottom: 0;
+  }
+}
+
+/* Filtres : look plus premium + cohérence palette */
+.filter{
+  background: rgba(0,0,0,0.02);
+  border-color: rgba(27,20,22,0.14);
+  color: var(--muted);
+}
+.filter:hover{
+  background: rgba(var(--accent-rgb),0.05);
+  border-color: rgba(var(--accent-rgb),0.22);
+  color: var(--text);
+}
+.filter.is-active{
+  background: linear-gradient(135deg, rgba(var(--accent-rgb),0.12), rgba(var(--accent-2-rgb),0.10));
+  border-color: rgba(var(--accent-rgb),0.28);
+}
+
+/* Compteurs plus discrets / luxe */
+.count{
+  border-color: rgba(var(--accent-rgb),0.18);
+  background: rgba(var(--accent-rgb),0.06);
+  color: rgba(27,20,22,0.72);
+}
+
+/* Grille des cartes : 2 colonnes sur desktop pour que ça fasse "catalogue premium" */
+@media (min-width: 860px){
+  .cards{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+}
+
+/* Cartes : moins "gris froid", plus "institut" */
+.card{
+  background: rgba(255,255,255,0.72);
+  border-color: rgba(27,20,22,0.12);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.10);
+}
+.card:hover{
+  border-color: rgba(var(--accent-rgb),0.20);
+  background: rgba(255,255,255,0.88);
+}
+
+/* Tout ce qui utilisait encore du violet hardcodé → bascule sur la palette A */
+.inline-link{
+  color: rgba(var(--accent-rgb),0.90);
+  text-decoration-color: rgba(var(--accent-rgb),0.28);
+}
+.footer__links a{
+  text-decoration-color: rgba(var(--accent-rgb),0.18);
+}
+.hero__badge span{
+  background: rgba(var(--accent-rgb),0.10);
+}
+
+/* Bouton Réserver : hover/focus cohérents */
+.btn--primary{
+  border-color: rgba(var(--accent-rgb),0.28);
+}
+.btn--primary:hover{
+  border-color: rgba(var(--accent-rgb),0.38);
+}
+
+/* Petits détails "pro" : scroll des filtres plus clean sur mobile */
+.filters::-webkit-scrollbar-thumb{
+  background: rgba(var(--accent-rgb),0.18);
+}
