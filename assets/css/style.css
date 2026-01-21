@@ -827,35 +827,35 @@ button{
   *{ transition: none !important; animation: none !important; }
 }
 /* ============================
-   PALETTE B — Chic Rosé / Beige Luxe
+   PALETTE A — Soft Nude Premium
    (à coller en fin de fichier)
 ============================ */
 
 :root{
   /* Fond & surfaces */
-  --bg: #FCF7F8;
+  --bg: #FBF7F4;
   --surface: #FFFFFF;
-  --surface-2: #F2E8EA;
+  --surface-2: #F3ECE7;
 
   /* Traits / bordures */
-  --stroke: rgba(26, 20, 23, 0.12);
+  --stroke: rgba(27, 20, 22, 0.12);
 
   /* Textes */
-  --text: #1A1417;      /* titres / texte principal */
-  --muted: #3B3036;     /* paragraphes */
-  --muted-2: rgba(26, 20, 23, 0.62);
+  --text: #1B1416;      /* titres / texte principal */
+  --muted: #3A2F33;     /* paragraphes */
+  --muted-2: rgba(27, 20, 22, 0.62);
 
   /* Accents */
-  --accent: #8B4A5A;        /* CTA / principal */
-  --accent-2: #D6B8A6;      /* secondaire (champagne rosé) */
-  --accent-rgb: 139, 74, 90;
-  --accent-2-rgb: 214, 184, 166;
+  --accent: #7A4E4A;        /* CTA / principal */
+  --accent-2: #C7A18A;      /* secondaire (champagne) */
+  --accent-rgb: 122, 78, 74;
+  --accent-2-rgb: 199, 161, 138;
 
   /* Focus */
-  --focus: #7A3F4E;
+  --focus: #6A403D;
 }
 
-/* Fond global (glow rosé luxe, très doux) */
+/* Fond global (glow premium, plus chaud) */
 body{
   background:
     radial-gradient(900px 520px at 20% 5%, rgba(var(--accent-rgb),0.10), transparent 55%),
@@ -886,7 +886,7 @@ body{
   border-color: rgba(var(--accent-rgb),0.22);
 }
 
-/* Section alt (fond “couture”) */
+/* Section alt (fond “luxe discret”) */
 .section--alt::before{
   background: linear-gradient(180deg, rgba(var(--accent-rgb),0.04), rgba(var(--accent-2-rgb),0.02));
 }
@@ -907,3 +907,4 @@ body{
 
 /* Petits accents (ex: étoiles avis) */
 .stars{ color: rgba(var(--accent-rgb),0.70); }
+
