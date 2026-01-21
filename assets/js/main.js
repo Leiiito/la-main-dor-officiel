@@ -66,40 +66,78 @@
   }
 
   /* ---------------------------------------------
-     2) Tabs Prestations
-     - Boutons : .filter[data-tab="id"]
-     - Panels  : .services-panel#id
+     
+  /* ---------------------------------------------
+     2) Prestations — Filtres simplifiés + recherche
+     - Boutons : .filter[data-group]
+     - Panels  : .services-panel#id (groupés)
   ---------------------------------------------- */
-  const tabButtons = $$(".filter[data-tab]");
+  const groupButtons = $$(".filter[data-group]");
   const panels = $$(".services-panel");
 
-  const activateTab = (id) => {
-    tabButtons.forEach((btn) => {
-      const active = btn.getAttribute("data-tab") === id;
-      btn.classList.toggle("is-active", active);
-      btn.setAttribute("aria-selected", active ? "true" : "false");
-    });
+  const GROUPS = {
+    ongles: ["ongles-mains", "ongles-gel", "ongles-pose-rallongement", "ongles-remplissage"],
+    pieds:  ["ongles-pieds"],
+    cils:   ["cils-pose", "cils-remplissage", "cils-rehaussement"],
+    packs:  ["packs"],
+    depose: ["ongles-depose", "cils-depose"]
+  };
 
+  const setPanelVisibility = (groupKey) => {
+    const allowed = new Set(GROUPS[groupKey] || []);
     panels.forEach((p) => {
-      const active = p.id === id;
-      p.classList.toggle("is-active", active);
+      p.classList.toggle("is-active", allowed.has(p.id));
     });
   };
 
-  if (tabButtons.length && panels.length) {
-    tabButtons.forEach((btn) => {
+  const activateGroup = (groupKey) => {
+    groupButtons.forEach((btn) => {
+      const active = btn.getAttribute("data-group") === groupKey;
+      btn.classList.toggle("is-active", active);
+      btn.setAttribute("aria-selected", active ? "true" : "false");
+    });
+    setPanelVisibility(groupKey);
+  };
+
+  if (groupButtons.length && panels.length) {
+    groupButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
-        const id = btn.getAttribute("data-tab");
-        if (!id) return;
-        activateTab(id);
-        // Sur mobile, recentre le tab actif dans le scroll horizontal
+        const key = btn.getAttribute("data-group");
+        if (!key) return;
+        activateGroup(key);
         btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        // Réapplique la recherche en cours si besoin
+        const searchInput = $("#prestationSearch");
+        if (searchInput && searchInput.value) searchInput.dispatchEvent(new Event("input"));
+      });
+    });
+    // Groupe par défaut
+    activateGroup("ongles");
+  }
+
+  // Recherche (filtre les cartes visibles)
+  const searchInput = $("#prestationSearch");
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      const q = searchInput.value.trim().toLowerCase();
+      const activePanels = $$(".services-panel.is-active");
+      activePanels.forEach((panel) => {
+        const cards = $$(".card", panel);
+        let visibleCount = 0;
+        cards.forEach((card) => {
+          const text = card.textContent.toLowerCase();
+          const show = !q || text.includes(q);
+          card.style.display = show ? "" : "none";
+          if (show) visibleCount++;
+        });
+        // Si un panel n'a plus de cartes visibles, on le masque (évite un grand vide)
+        panel.style.display = visibleCount ? "" : "none";
       });
     });
   }
 
-  /* ---------------------------------------------
-     3) Lightbox Galerie
+
+3) Lightbox Galerie
      - Clique sur une image => ouvre
      - ESC / clic fond / bouton => ferme
   ---------------------------------------------- */
@@ -169,15 +207,3 @@
   track('[data-cta^="reserve"]', "Réserver");
   track("[data-service]", "Réserver (prestation)");
 })();
-
-// Recherche prestation
-const searchInput = document.getElementById('prestationSearch');
-if (searchInput) {
-  searchInput.addEventListener('input', function () {
-    const value = this.value.toLowerCase();
-    document.querySelectorAll('.card').forEach(card => {
-      const text = card.innerText.toLowerCase();
-      card.style.display = text.includes(value) ? '' : 'none';
-    });
-  });
-}

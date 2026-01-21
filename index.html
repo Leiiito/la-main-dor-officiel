@@ -188,122 +188,30 @@
         </header>
 
         <div class="filters" role="tablist" aria-label="Catégories de prestations">
-          
-          <button class="filter is-active"
-                  id="tab-ongles-mains"
-                  type="button"
-                  role="tab"
-                  aria-selected="true"
-                  aria-controls="ongles-mains"
-                  data-tab="ongles-mains">
-            Ongles · Mains
-            <span class="count" aria-hidden="true">1</span>
-          </button>
-          <button class="filter "
-                  id="tab-ongles-pieds"
-                  type="button"
-                  role="tab"
-                  aria-selected="false"
-                  aria-controls="ongles-pieds"
-                  data-tab="ongles-pieds">
-            Ongles · Pieds
-            <span class="count" aria-hidden="true">1</span>
-          </button>
-          <button class="filter "
-                  id="tab-ongles-gel"
-                  type="button"
-                  role="tab"
-                  aria-selected="false"
-                  aria-controls="ongles-gel"
-                  data-tab="ongles-gel">
-            Ongles · Gel
-            <span class="count" aria-hidden="true">1</span>
-          </button>
-          <button class="filter "
-                  id="tab-ongles-pose-rallongement"
-                  type="button"
-                  role="tab"
-                  aria-selected="false"
-                  aria-controls="ongles-pose-rallongement"
-                  data-tab="ongles-pose-rallongement">
-            Ongles · Pose / Rallongement
-            <span class="count" aria-hidden="true">2</span>
-          </button>
-          <button class="filter "
-                  id="tab-ongles-remplissage"
-                  type="button"
-                  role="tab"
-                  aria-selected="false"
-                  aria-controls="ongles-remplissage"
-                  data-tab="ongles-remplissage">
-            Ongles · Remplissage
-            <span class="count" aria-hidden="true">1</span>
-          </button>
-          <button class="filter "
-                  id="tab-ongles-depose"
-                  type="button"
-                  role="tab"
-                  aria-selected="false"
-                  aria-controls="ongles-depose"
-                  data-tab="ongles-depose">
-            Ongles · Dépose
-            <span class="count" aria-hidden="true">3</span>
-          </button>
-          <button class="filter "
-                  id="tab-packs"
-                  type="button"
-                  role="tab"
-                  aria-selected="false"
-                  aria-controls="packs"
-                  data-tab="packs">
-            Packs
-            <span class="count" aria-hidden="true">4</span>
-          </button>
-          <button class="filter "
-                  id="tab-cils-pose"
-                  type="button"
-                  role="tab"
-                  aria-selected="false"
-                  aria-controls="cils-pose"
-                  data-tab="cils-pose">
-            Cils · Pose
-            <span class="count" aria-hidden="true">5</span>
-          </button>
-          <button class="filter "
-                  id="tab-cils-remplissage"
-                  type="button"
-                  role="tab"
-                  aria-selected="false"
-                  aria-controls="cils-remplissage"
-                  data-tab="cils-remplissage">
-            Cils · Remplissage
-            <span class="count" aria-hidden="true">10</span>
-          </button>
-          <button class="filter "
-                  id="tab-cils-rehaussement"
-                  type="button"
-                  role="tab"
-                  aria-selected="false"
-                  aria-controls="cils-rehaussement"
-                  data-tab="cils-rehaussement">
-            Cils · Rehaussement
-            <span class="count" aria-hidden="true">2</span>
-          </button>
-          <button class="filter "
-                  id="tab-cils-depose"
-                  type="button"
-                  role="tab"
-                  aria-selected="false"
-                  aria-controls="cils-depose"
-                  data-tab="cils-depose">
-            Cils · Dépose
-            <span class="count" aria-hidden="true">2</span>
-          </button>
-        </div>
+  <button class="filter is-active" type="button" role="tab" aria-selected="true" data-group="ongles">
+    Ongles <span class="count" aria-hidden="true">5</span>
+  </button>
+  <button class="filter" type="button" role="tab" aria-selected="false" data-group="cils">
+    Cils <span class="count" aria-hidden="true">17</span>
+  </button>
+  <button class="filter" type="button" role="tab" aria-selected="false" data-group="pieds">
+    Pieds <span class="count" aria-hidden="true">1</span>
+  </button>
+  <button class="filter" type="button" role="tab" aria-selected="false" data-group="packs">
+    Packs <span class="count" aria-hidden="true">4</span>
+  </button>
+  <button class="filter" type="button" role="tab" aria-selected="false" data-group="depose">
+    Dépose <span class="count" aria-hidden="true">5</span>
+  </button>
+</div>
+<div class="prestations-search">
+  <label class="sr-only" for="prestationSearch">Rechercher une prestation</label>
+  <input type="search" id="prestationSearch" placeholder="Rechercher une prestation…" autocomplete="off" />
+</div>
 
         <div class="services" data-tabs>
           
-        <section class="services-panel is-active" id="ongles-mains" role="tabpanel" aria-labelledby="tab-ongles-mains">
+        <section class="services-panel" id="ongles-mains" role="tabpanel" aria-labelledby="tab-ongles-mains">
           <div class="cards cards--services">
             
           <article class="card service" data-service-card>
@@ -871,15 +779,15 @@
         </header>
 
         <div class="cards cards--3">
-          <article class="card" data-search>
+          <article class="card">
             <h3 class="card__title">Hygiène stricte</h3>
             <p class="card__desc">Désinfection, matériel propre et protocoles respectés à chaque rendez-vous.</p>
           </article>
-          <article class="card" data-search>
+          <article class="card">
             <h3 class="card__title">Produits professionnels</h3>
             <p class="card__desc">Sélection de produits pro pour une tenue fiable et un rendu net.</p>
           </article>
-          <article class="card" data-search>
+          <article class="card">
             <h3 class="card__title">Qualité & tenue</h3>
             <p class="card__desc">Préparation minutieuse, finitions propres, conseils d’entretien personnalisés.</p>
           </article>
@@ -981,7 +889,7 @@
           <p class="section__sub">Informations obligatoires.</p>
         </header>
 
-        <div class="card" data-search>
+        <div class="card">
           <p><strong>Éditeur :</strong> La Main d’Or</p>
           <p><strong>Statut :</strong> Micro-entreprise</p>
           <p><strong>Adresse :</strong> Adresse communiquée après réservation (Gravelines, 59820) — studio privé sur rendez-vous uniquement</p>
@@ -1001,7 +909,7 @@
           <p class="section__sub">Comprendre simplement comment vos données sont traitées.</p>
         </header>
 
-        <div class="card" data-search>
+        <div class="card">
           <p><strong>Données collectées par ce site :</strong> ce site vitrine ne vous demande pas de créer de compte et ne contient pas de formulaire. Il ne collecte pas directement de données personnelles.</p>
           <p><strong>Services tiers :</strong> la réservation se fait via Calendly, et vous pouvez me contacter via WhatsApp / Instagram. Ces services peuvent collecter des données selon leurs propres politiques.</p>
           <p><strong>Cookies :</strong> aucun outil de mesure d’audience n’est installé sur ce site. GitHub Pages peut toutefois traiter des informations techniques nécessaires au fonctionnement et à la sécurité.</p>
