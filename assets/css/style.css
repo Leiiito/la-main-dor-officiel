@@ -826,3 +826,84 @@ button{
   html{ scroll-behavior: auto; }
   *{ transition: none !important; animation: none !important; }
 }
+/* ============================
+   PALETTE B — Chic Rosé / Beige Luxe
+   (à coller en fin de fichier)
+============================ */
+
+:root{
+  /* Fond & surfaces */
+  --bg: #FCF7F8;
+  --surface: #FFFFFF;
+  --surface-2: #F2E8EA;
+
+  /* Traits / bordures */
+  --stroke: rgba(26, 20, 23, 0.12);
+
+  /* Textes */
+  --text: #1A1417;      /* titres / texte principal */
+  --muted: #3B3036;     /* paragraphes */
+  --muted-2: rgba(26, 20, 23, 0.62);
+
+  /* Accents */
+  --accent: #8B4A5A;        /* CTA / principal */
+  --accent-2: #D6B8A6;      /* secondaire (champagne rosé) */
+  --accent-rgb: 139, 74, 90;
+  --accent-2-rgb: 214, 184, 166;
+
+  /* Focus */
+  --focus: #7A3F4E;
+}
+
+/* Fond global (glow rosé luxe, très doux) */
+body{
+  background:
+    radial-gradient(900px 520px at 20% 5%, rgba(var(--accent-rgb),0.10), transparent 55%),
+    radial-gradient(900px 520px at 85% 15%, rgba(var(--accent-2-rgb),0.10), transparent 55%),
+    radial-gradient(900px 650px at 55% 80%, rgba(var(--accent-rgb),0.06), transparent 60%),
+    var(--bg);
+}
+
+/* Sélection + focus */
+::selection{ background: rgba(var(--accent-rgb),0.14); }
+:focus-visible{
+  outline: 2px solid rgba(var(--accent-rgb),0.45);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+
+/* CTA */
+.btn--primary{
+  background: linear-gradient(135deg, rgba(var(--accent-rgb),0.14), rgba(var(--accent-2-rgb),0.10));
+  border-color: rgba(var(--accent-rgb),0.28);
+}
+.btn--primary:hover{
+  border-color: rgba(var(--accent-rgb),0.38);
+}
+
+/* Bouton secondaire (ghost) */
+.btn--ghost:hover{
+  border-color: rgba(var(--accent-rgb),0.22);
+}
+
+/* Section alt (fond “couture”) */
+.section--alt::before{
+  background: linear-gradient(180deg, rgba(var(--accent-rgb),0.04), rgba(var(--accent-2-rgb),0.02));
+}
+
+/* Badge hero */
+.hero__badge span{
+  background: rgba(var(--accent-rgb),0.10);
+}
+
+/* Liens accentués */
+.inline-link{
+  color: rgba(var(--accent-rgb),0.90);
+  text-decoration-color: rgba(var(--accent-rgb),0.28);
+}
+.inline-link:hover{
+  text-decoration-color: rgba(var(--accent-rgb),0.40);
+}
+
+/* Petits accents (ex: étoiles avis) */
+.stars{ color: rgba(var(--accent-rgb),0.70); }
