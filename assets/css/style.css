@@ -1103,3 +1103,28 @@ body{
 #prestations .card:hover{
   background: linear-gradient(180deg, #FFF4EE, #FFFFFF) !important;
 }
+
+
+/* ============================
+   Onglets Prestations — Mauve foncé
+============================ */
+.filter{
+  border-color: rgba(var(--accent-rgb),0.22) !important;
+  background: rgba(var(--accent-rgb),0.06) !important;
+  color: rgba(17,17,24,0.86) !important;
+}
+.filter:hover{
+  background: rgba(var(--accent-rgb),0.12) !important;
+  border-color: rgba(var(--accent-rgb),0.34) !important;
+  color: rgba(17,17,24,0.92) !important;
+}
+.filter.is-active{
+  background: rgba(var(--accent-rgb),0.88) !important;
+  border-color: rgba(var(--accent-rgb),0.88) !important;
+  color: #ffffff !important;
+}
+.filter.is-active .count{
+  background: rgba(255,255,255,0.16) !important;
+  border-color: rgba(255,255,255,0.22) !important;
+  color: #ffffff !important;
+}

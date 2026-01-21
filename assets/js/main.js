@@ -14,31 +14,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function setActiveTab(tab) {
     activeTab = normalize(tab);
-
     filters.forEach((btn) => {
       const isActive = normalize(btn.dataset.tab) === activeTab;
       btn.classList.toggle('is-active', isActive);
       btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
     });
-
-    panels.forEach((p) => {
-      p.classList.toggle('is-active', normalize(p.id) === activeTab);
-    });
-
+    // If no search query, show only active panel; if query exists, handled in applySearch()
     applySearch();
+  }
+
+  function showOnlyPanel(panelId) {
+    panels.forEach((p) => {
+      p.classList.toggle('is-active', normalize(p.id) === normalize(panelId));
+    });
+  }
+
+  function showAllPanels() {
+    panels.forEach((p) => p.classList.add('is-active'));
   }
 
   function applySearch() {
     const q = searchInput ? normalize(searchInput.value) : '';
-    const activePanel = document.getElementById(activeTab);
-    if (!activePanel) return;
 
-    const cards = Array.from(activePanel.querySelectorAll('.card.service'));
+    if (q) {
+      // Search across ALL prestations: show all panels but hide non-matching cards
+      showAllPanels();
 
-    cards.forEach((card) => {
-      const text = normalize(card.innerText || '');
-      card.style.display = !q || text.includes(q) ? '' : 'none';
-    });
+      panels.forEach((panel) => {
+        const cards = Array.from(panel.querySelectorAll('.card.service'));
+        let visibleInPanel = 0;
+        cards.forEach((card) => {
+          const text = normalize(card.innerText || '');
+          const ok = text.includes(q);
+          card.style.display = ok ? '' : 'none';
+          if (ok) visibleInPanel += 1;
+        });
+        // If a panel has 0 results, hide the whole panel for cleanliness
+        panel.style.display = visibleInPanel ? '' : 'none';
+      });
+    } else {
+      // No search: reset display and show only active tab
+      panels.forEach((panel) => {
+        panel.style.display = '';
+        Array.from(panel.querySelectorAll('.card.service')).forEach((card) => {
+          card.style.display = '';
+        });
+      });
+      showOnlyPanel(activeTab);
+    }
 
     updateCounts(q);
   }
@@ -64,6 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   filters.forEach((btn) => {
     btn.addEventListener('click', () => {
+      // If search query is active, clicking a tab will clear search and go to that tab (more intuitive)
+      if (searchInput && searchInput.value.trim().length) {
+        searchInput.value = '';
+      }
       setActiveTab(btn.dataset.tab);
     });
   });
@@ -72,5 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     searchInput.addEventListener('input', applySearch);
   }
 
-  setActiveTab(activeTab);
+  // Init
+  showOnlyPanel(activeTab);
+  updateCounts('');
 });
