@@ -826,9 +826,11 @@ button{
   html{ scroll-behavior: auto; }
   *{ transition: none !important; animation: none !important; }
 }
+
+
 /* ============================
    PALETTE A — Soft Nude Premium
-   (à coller en fin de fichier)
+   (ajouté: palette premium)
 ============================ */
 
 :root{
@@ -908,6 +910,7 @@ body{
 /* Petits accents (ex: étoiles avis) */
 .stars{ color: rgba(var(--accent-rgb),0.70); }
 
+
 /* ============================
    FIX HEADER (propre + premium)
 ============================ */
@@ -934,23 +937,16 @@ body{
 }
 
 /* Typo du brand plus stable */
-.brand__name{
-  line-height: 1.1;
-}
+.brand__name{ line-height: 1.1; }
 
 /* Meta : sur petits écrans, on évite que ça casse l’en-tête */
 @media (max-width: 520px){
   .brand__meta{ display: none; }
 }
 
-/* CTA navbar : garde ton style mais cohérent palette A */
-.nav__cta.btn--primary{
-  border-color: rgba(var(--accent-rgb),0.28);
-}
-.nav__cta.btn--primary:hover{
-  border-color: rgba(var(--accent-rgb),0.38);
-}
-
+/* CTA navbar : cohérent palette */
+.nav__cta.btn--primary{ border-color: rgba(var(--accent-rgb),0.28); }
+.nav__cta.btn--primary:hover{ border-color: rgba(var(--accent-rgb),0.38); }
 
 /* ============================
    PRESTATIONS (plus logique / simple / chic)
@@ -988,7 +984,7 @@ body{
   color: rgba(27,20,22,0.72);
 }
 
-/* Grille des cartes : 2 colonnes sur desktop pour que ça fasse "catalogue premium" */
+/* Grille des cartes : 2 colonnes sur desktop pour un scan plus facile */
 @media (min-width: 860px){
   .cards{
     grid-template-columns: repeat(2, 1fr);
@@ -996,7 +992,7 @@ body{
   }
 }
 
-/* Cartes : moins "gris froid", plus "institut" */
+/* Cartes : plus "institut" */
 .card{
   background: rgba(255,255,255,0.72);
   border-color: rgba(27,20,22,0.12);
@@ -1007,27 +1003,21 @@ body{
   background: rgba(255,255,255,0.88);
 }
 
-/* Tout ce qui utilisait encore du violet hardcodé → bascule sur la palette A */
+/* Texte/accents : s’assurer que tout suit la palette */
 .inline-link{
   color: rgba(var(--accent-rgb),0.90);
   text-decoration-color: rgba(var(--accent-rgb),0.28);
 }
-.footer__links a{
-  text-decoration-color: rgba(var(--accent-rgb),0.18);
+.inline-link:hover{
+  text-decoration-color: rgba(var(--accent-rgb),0.40);
 }
-.hero__badge span{
-  background: rgba(var(--accent-rgb),0.10);
-}
+.stars{ color: rgba(var(--accent-rgb),0.70); }
 
-/* Bouton Réserver : hover/focus cohérents */
-.btn--primary{
-  border-color: rgba(var(--accent-rgb),0.28);
-}
-.btn--primary:hover{
-  border-color: rgba(var(--accent-rgb),0.38);
-}
+/* Bouton primary : hover/focus cohérents */
+.btn--primary{ border-color: rgba(var(--accent-rgb),0.28); }
+.btn--primary:hover{ border-color: rgba(var(--accent-rgb),0.38); }
 
-/* Petits détails "pro" : scroll des filtres plus clean sur mobile */
+/* Scroll filtres plus clean sur mobile */
 .filters::-webkit-scrollbar-thumb{
   background: rgba(var(--accent-rgb),0.18);
 }
